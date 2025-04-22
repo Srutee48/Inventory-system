@@ -6,6 +6,7 @@ import {
     updateProduct,
     deleteProduct,
     getLowStockProducts,
+    getProductById
 } from "../controllers/productController.js";
 import { authenticateToken, authorizeRole } from "../middleware/authMiddleware.js";
 
@@ -14,6 +15,7 @@ const router = express.Router();
 router.get("/", authenticateToken, getProducts);
 router.post("/", authenticateToken, authorizeRole("Admin"), addProduct);
 router.delete("/:id", authenticateToken, authorizeRole("Admin"), deleteProduct);
+router.get("/:id", authenticateToken, getProductById);
 router.get("/low-stock", authenticateToken, authorizeRole("Admin", "Staff"), getLowStockProducts);
 router.put("/:id", authenticateToken, authorizeRole("Admin", "Staff"), updateProduct);
 

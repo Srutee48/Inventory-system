@@ -1,7 +1,9 @@
 // public/sales.js
 import { checkAuth, logout } from "./auth.js";
 
-window.onload = checkAuth();
+window.onload = async () => {
+    checkAuth ();
+};
 const logoutBtn = document.getElementById("logout-btn");
 if (logoutBtn) {
     logoutBtn.addEventListener("click", logout);

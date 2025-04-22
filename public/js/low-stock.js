@@ -10,7 +10,9 @@ async function fetchLowStockProducts() {
     try {
         const token = localStorage.getItem("token");
         const response = await fetch("http://localhost:3000/api/products/low-stock", {
+            method: "GET",
             headers: {
+                "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`,
             },
         });
@@ -19,8 +21,11 @@ async function fetchLowStockProducts() {
         }
         return await response.json();
     } catch (error) {
+        setTimeout(() => {
+            console.error("Error fetching low stock products:", error);
+        }, 10000);
         console.error("Error fetching low stock products:", error);
-        window.location.href = "index.html";
+        //window.location.href = "/html/index.html";
     }
 }
 

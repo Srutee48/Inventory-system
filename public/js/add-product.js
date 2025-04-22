@@ -42,8 +42,8 @@ addProductForm.addEventListener("submit", async (event) => {
             messageContainer.className = "success-message";
             addProductForm.reset();
             setTimeout(() => {
-                window.location.href = "products.html";
-            }, 2000);
+                window.location.href = "/html/index.html";
+            }, 1000);
         } else {
             messageContainer.textContent = data.message || "Failed to add product";
             messageContainer.className = "error-message";

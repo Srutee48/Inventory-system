@@ -89,7 +89,7 @@ editProductForm.addEventListener("submit", async (event) => {
         messageContainer.textContent = "Product updated successfully!";
         messageContainer.className = "success-message";
         setTimeout(() => {
-            window.location.href = "products.html";
+            window.location.href = "/html/index.html";
         }, 2000);
     } catch (error) {
         messageContainer.textContent = error.message || "An error occurred.";

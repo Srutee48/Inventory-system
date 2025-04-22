@@ -3,17 +3,17 @@ import { fn, col } from "sequelize";
 import Sale from "../models/sale.js";
 import Product from "../models/product.js";
 import User from "../models/User.js";
-import StockHistory from "../models/stockHistory.js";
+// import StockHistory from "../models/stockHistory.js";
 
-const createStockHistoryEntry = async (productId, userId, oldQuantity, newQuantity, transactionType) => {
-    await StockHistory.create({
-        productId,
-        userId,
-        oldQuantity,
-        newQuantity,
-        transactionType,
-    });
-};
+// const createStockHistoryEntry = async (productId, userId, oldQuantity, newQuantity, transactionType) => {
+//     await StockHistory.create({
+//         productId,
+//         userId,
+//         oldQuantity,
+//         newQuantity,
+//         transactionType,
+//     });
+// };
 
 export const createSale = async (req, res) => {
     const { productId, quantity } = req.body;

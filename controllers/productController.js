@@ -1,17 +1,17 @@
 // controllers/productController.js
 import Product from "../models/product.js";
-import StockHistory from "../models/stockHistory.js";
+// import StockHistory from "../models/stockHistory.js";
 import { Op } from 'sequelize';
 
-const createStockHistoryEntry = async (productId, userId, oldQuantity, newQuantity, transactionType) => {
-    await StockHistory.create({
-        productId,
-        userId,
-        oldQuantity,
-        newQuantity,
-        transactionType,
-    });
-};
+// const createStockHistoryEntry = async (productId, userId, oldQuantity, newQuantity, transactionType) => {
+//     await StockHistory.create({
+//         productId,
+//         userId,
+//         oldQuantity,
+//         newQuantity,
+//         transactionType,
+//     });
+// };
 
 export const addProduct = async (req, res) => {
     const { name, quantity, price, category, reorder_level } = req.body;
@@ -83,12 +83,24 @@ export const updateProduct = async (req, res) => {
 
         await product.update({ name, quantity, price, category, reorder_level });
 
-        await createStockHistoryEntry(id, userId, oldQuantity, quantity, "UPDATE");
+        // await createStockHistoryEntry(id, userId, oldQuantity, quantity, "UPDATE");
 
         res.status(200).json({ message: "Product updated successfully." });
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: "Server error while updating product." });
+    }
+};
+export const getProductById = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const product = await Product.findByPk(id);
+        if (!product) {
+            return res.status(404).json({ message: "Product not found" });
+        }
+        res.json(product);
+    } catch (error) {
+        res.status(500).json({ error: "Server error while fetching product" });
     }
 };
 
